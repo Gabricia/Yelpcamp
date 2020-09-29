@@ -1,0 +1,59 @@
+<%- include ("../partials/header")%>
+<div class="container">
+  <header class="jumbotron">
+    <div class="container">
+      <h1>
+        <span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+        Bienvenue sur Yelcamp
+      </h1>
+      <p>Les meilleurs campings du monde à portée de main</p>
+      <p>
+        <a class="btn btn-primary btn-lg" href="/campgrounds/new"
+          >Ajouter un nouveau camping</a
+        >
+      </p>
+    </div>
+  </header>
+
+  <div class="row text-center" style="display: flex; flex-wrap: wrap">
+    <div class="col-md-12">
+      <% if(noMatch!==null){%>
+      <h3><%=noMatch%></h3>
+      <%}%>
+    </div>
+    <%campgrounds.forEach(function(campground){ %>
+    <div class="col-md-3 col-sm-6">
+      <div class="thumbnail">
+        <img id="imgShowPage" src="<%=campground.image%>" alt="" />
+        <div class="caption">
+          <h4><%=campground.name%></h4>
+          <% if (campground.rating === 0) { %>
+          <em>Aucun avis.</em>
+          <% } else { %>
+          <span class="fa fa-star checked"></span>
+          <span
+            class="fa fa-star <% if (campground.rating > 1.5) { %> checked <% } %>"
+          ></span>
+          <span
+            class="fa fa-star <% if (campground.rating > 2.5) { %> checked <% } %>"
+          ></span>
+          <span
+            class="fa fa-star <% if (campground.rating > 3.5) { %> checked <% } %>"
+          ></span>
+          <span
+            class="fa fa-star <% if (campground.rating > 4.5) { %> checked <% } %>"
+          ></span>
+          <% } %>
+        </div>
+        <p>
+          <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary"
+            >Plus d'infos</a
+          >
+        </p>
+      </div>
+    </div>
+    <%})%>
+  </div>
+</div>
+
+<%- include ("../partials/footer")%>
