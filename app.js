@@ -16,11 +16,28 @@ const reviewRoutes = require("./routes/review");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
 
-mongoose.connect("mongodb://localhost/yelp_camp", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useFindAndModify: false,
-});
+// mongoose.connect("mongodb://localhost/yelp_camp", {
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true,
+//   useFindAndModify: false,
+// useCreateIndex:true,
+// });
+mongoose
+  .connect(
+    "mongodb+srv://Gabricia:skimboard@cluster0.lrzk1.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    }
+  )
+  .then(() => {
+    console.log("connected to db");
+  })
+  .catch((err) => {
+    console.log("ERROR:", err.message);
+  });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
