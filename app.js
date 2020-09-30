@@ -15,6 +15,7 @@ const authRoutes = require("./routes/index");
 const reviewRoutes = require("./routes/review");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
+const port = process.env.PORT || 3000;
 
 // mongoose.connect("mongodb://localhost/yelp_camp", {
 //   useUnifiedTopology: true,
@@ -72,6 +73,6 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes);
 
-app.listen(3000, function () {
+app.listen(port, function () {
   console.log("Yelpcamp Server has started");
 });
