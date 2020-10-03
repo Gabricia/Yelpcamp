@@ -17,28 +17,28 @@ const methodOverride = require("method-override");
 const flash = require("connect-flash");
 const port = process.env.PORT || 3000;
 
-// mongoose.connect("mongodb://localhost/yelp_camp", {
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-// useCreateIndex:true,
-// });
-mongoose
-  .connect(
-    "mongodb+srv://Gabricia:skimboard@cluster0.lrzk1.mongodb.net/Cluster0?retryWrites=true&w=majority",
-    {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    }
-  )
-  .then(() => {
-    console.log("connected to db");
-  })
-  .catch((err) => {
-    console.log("ERROR:", err.message);
-  });
+mongoose.connect(process.env.DATABASEURL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+});
+// mongoose
+//   .connect(
+//     "mongodb+srv://Gabricia:skimboard@cluster0.lrzk1.mongodb.net/Cluster0?retryWrites=true&w=majority",
+//     {
+//       useUnifiedTopology: true,
+//       useNewUrlParser: true,
+//       useFindAndModify: false,
+//       useCreateIndex: true,
+//     }
+//   )
+//   .then(() => {
+//     console.log("connected to db");
+//   })
+//   .catch((err) => {
+//     console.log("ERROR:", err.message);
+//   });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
